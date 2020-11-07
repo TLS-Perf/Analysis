@@ -1,7 +1,7 @@
 
 
-def parse(lines):
-    
+def parse(str):
+    lines = str.split("\n")
     support_tls13 = 1 if "tls13" in lines[7] else 0
     metric = ["avg", "median", "min", "max", "75", "95", "99"]
 
@@ -32,4 +32,6 @@ def parse(lines):
 
 if __name__ == "__main__":
     with open("3.txt", 'r') as fp:
-        ret = parse(fp.readlines())
+        ret = parse(fp.read())
+    
+    import pdb; pdb.set_trace()
