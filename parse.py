@@ -9,25 +9,26 @@ def parse(str):
         "support3": support_tls13,
         "tls2": {
             
+        },
+        "tls3": {
+
         }
     }
 
     for i in range(4, 24, 4):
         ## TLS 1.2
-        ret["tls2"][lines[i][7:-1]] = {}
-        values = map(lambda a: float(a), lines[i+2][7:-1].split(","))
+        ret["tls2"][lines[i][7:]] = {}
+        values = map(lambda a: float(a), lines[i+2][7:].split(","))
         
         for (index, value) in enumerate(values):
-            ret["tls2"][lines[i][7:-1]][metric[index]] = value
+            ret["tls2"][lines[i][7:]][metric[index]] = value
         
         ## TLS 1.3
         if support_tls13:
-            ret["tls3"] = {}
-            ret["tls3"][lines[i][7:-1]] = {}
-            values = map(lambda a: float(a), lines[i+3][7:-1].split(","))
+            ret["tls3"][lines[i][7:]] = {}
+            values = map(lambda a: float(a), lines[i+3][7:].split(","))
             for (index, value) in enumerate(values):
-                ret["tls2"][lines[i][7:-1]][metric[index]] = value
-
+                ret["tls3"][lines[i][7:]][metric[index]] = value
     return ret
 
 if __name__ == "__main__":
