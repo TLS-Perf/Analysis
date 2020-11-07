@@ -60,11 +60,15 @@ def main():
     print("Tool Started!!!")
     websites = []
     outputs = []
+    maps = []
     readcsv(websites)
     #print(websites) #websites
     runcurl(websites,outputs)
     #print(outputs) #output of curl
-    datamap = parse(outputs)
+    for output in outputs:
+        datamap = parse(outputs)
+        maps.append(datamap)
+    print(datamap)
 
 if __name__ == "__main__":
     # execute only if run as a script
