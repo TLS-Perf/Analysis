@@ -1,10 +1,17 @@
 import os
-from parse import parse
+from parse import parse, parse_csv
 import json
+
+from threading import Thread
 
 num = 3 #number of websites
 step = 100000 #step size
 stepNum = 10 #step number
+
+
+threads = []
+for th in range(num_threads):
+    threads.append(Thread(
 
 def readcsv(website):
     # Using readline() 
@@ -43,8 +50,13 @@ def runcurl(websites, outmaps):
         with open("result.json", 'w') as fp:
             fp.write(json.dumps(outmaps))
     
+def analysis():
 
+    with open("result.json", 'r') as fd:
+        result = json.loads(fd.read())
 
+    with open("1m.json", 'r') as fd:
+        ranking = json.loads(fd.read())
 
 
 def main():
@@ -58,4 +70,5 @@ def main():
 
 if __name__ == "__main__":
     # execute only if run as a script
-    main()
+    # main()
+    readcsv()
