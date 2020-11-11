@@ -18,7 +18,7 @@ def parse(str):
     for i in range(4, 24, 4):
         ## TLS 1.2
         ret["tls2"][lines[i][7:]] = {}
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
         values = map(lambda a: float(a), lines[i+2][7:].split(","))
         
         for (index, value) in enumerate(values):
@@ -33,7 +33,7 @@ def parse(str):
     return ret
 
 def parse_csv():
-    with open('./top-1m.csv', 'r') fd:
+    with open('./top-1m.csv', 'r') as fd:
         lines = fd.readlines()
 
     dic = {}
