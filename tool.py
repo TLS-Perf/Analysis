@@ -30,12 +30,15 @@ def readcsv(website):
 
 def runcurl(websites, outmaps):
     for website in websites:
-        print(website)
-        stream = os.popen('./curltimes.sh compare https://' + website)
-        output = stream.read()
-        outmap = parse(output)
-        print(outmap)
-        outmaps[website] = outmap
+        try:
+            print(website)
+            stream = os.popen('./curltimes.sh compare https://' + website)
+            output = stream.read()
+            outmap = parse(output)
+            print(outmap)
+            outmaps[website] = outmap
+        except Exception as e:
+            print ("Error")
 
         with open("result.json", 'w') as fp:
             fp.write(json.dumps(outmaps))
