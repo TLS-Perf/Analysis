@@ -32,6 +32,21 @@ def parse(str):
                 ret["tls3"][lines[i][7:]][metric[index]] = value
     return ret
 
+def parse_csv():
+    with open('./top-1m.csv', 'r') fd:
+        lines = fd.readlines()
+
+    dic = {}
+    for line in lines:
+        rank, website = line.split(',')
+        rank = int(rank)
+        dic[website] = rank
+    
+    with open("1m.json", 'w') as fp:
+        fp.write(json.dumps(dic))
+        
+    return dic
+
 if __name__ == "__main__":
     with open("3.txt", 'r') as fp:
         ret = parse(fp.read())
