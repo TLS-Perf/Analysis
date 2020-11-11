@@ -1,4 +1,4 @@
-
+import json
 
 def parse(str):
     lines = str.split("\n")
@@ -46,6 +46,7 @@ def parse_csv():
         fp.write(json.dumps(dic))
         
     return dic
+
 
 if __name__ == "__main__":
     with open("3.txt", 'r') as fp:
