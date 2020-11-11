@@ -20,11 +20,12 @@ def readcsv(website):
     file1.close()
 
 def runcurl(websites, outputs):
-    for website in websites:
-        print(website)
-        stream = os.popen('./curltimes.sh compare https://' + website)
+    for (index, website) in enumerate(websites):
+        if index % 10000 == 0:
+            print(website)
+            stream = os.popen('./curltimes.sh compare https://' + website)
         #print(stream.read())
-        outputs.append(stream.read())
+            outputs.append(stream.read())
 
 def parse(lines):
     
