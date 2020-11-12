@@ -5,6 +5,7 @@ import json
 import random
 
 from threading import Thread
+import matplotlib.pyplot as plt
 
 num = 10 #number of websites
 step = 10000 #step size
@@ -25,6 +26,7 @@ def readrandcsv(websites):
             split = lines[index].split(',')
             websites.append(split[1])
 
+<<<<<<< HEAD
 def filterWebs(websites,filteredWebs):
     for website in websites:
         print(website)
@@ -38,6 +40,9 @@ def filterWebs(websites,filteredWebs):
             flag = False
         if flag:
             filteredWebs.append(website)
+=======
+websites = ['google.com\n', 'amazon.com\n', 'twitter.com\n', 'youtube.com\n', 'taobao.com\n', 'yahoo.com\n', 'google.co.in\n', 'reddit.com\n', 'qq.com\n', 'facebook.com\n', 'baidu.com\n', 'wikipedia.org\n', 'sociaplus.com\n', 'deliveroo.co.uk\n', 'bet365.it\n', 'wallpaperscraft.ru\n', 'calciomercato.it\n', 'sejda.com\n', 'sexart.com\n', 'netflix.com\n', 'villanova.edu\n', 'overcart.com\n', 'tiava.com\n', 'dsogaming.com\n', 'itver.cc\n', 'traktrafficflow.com\n', 'seoreviewtools.com\n', 'wtvr.com\n', 'mplstudios.com\n', 'filminstan.pw\n', 'tuho.tv\n', 'santongit.com\n', 'coastal.com\n', 'blindstogo.com\n', 'piaotian.cc\n', 'gimoo.net\n', 'sotmarket.ru\n', 'remedio-caseiro.com\n', 'e-korepetycje.net\n', 'viralpatel.net\n', 'cclonline.com\n', 'airows.com\n', 'doc4web.ru\n', 'kunisawa.net\n', 'movableink.com\n', 'newside.gr\n', 'favcars.net\n', 'tvpadtalk.ca\n', 'magvision.com\n', 'srt2sub.xyz\n', 'anyvan.com\n', 'abradio.cz\n', 'snipplr.com\n', 'chinesemenu.com\n', 'music-create.org\n', 'antikleidi.com\n', 'mobills.com.br\n', 'kellerisd.net\n', 'memorado.com\n', 'mycelium.com\n', 'xzf.in\n', 'technosotnya.com\n', 'forexdailypips.com\n', 'haahtela.fi\n', 'oshoworld.com\n', 'novostroy.su\n', 'sib.fm\n', 'brandytube.com\n', 'koopjeskrant.be\n', 'impresaediritto.com\n', 'puntal.com.ar\n', 'chicorei.com\n', 'gourmetsleuth.com\n', 'zdravoe.com\n', 'reliancesmart.in\n', 'rxtv.ru\n', 'jeju.go.kr\n', 'meteoservices.be\n', 'manganetworks.co\n', 'xn--42cah7d0cxcvbbb9x.com\n', 'foli.fi\n', 'kylebrush.com\n', 'bankoftexas.com\n', 'chinaautoweb.com\n', 'profitstars.com\n', 'celebmix.com\n', 'weandy.com\n', 'houra.fr\n', 'hukukmedeniyeti.org\n', 'appsgames.ru\n', 'theeagleonline.com.ng\n', 'spenceclothing.com\n', 'wsceshi.com\n', 'techni-contact.com\n', 'fizzip.com\n', 'momonayama.net\n', 'webyar.net\n', 'feral-heart.com\n', 'kauffman.org\n', 'iboard.ws\n']
+>>>>>>> update
 
 '''
 def readcsv(website, rank):
@@ -75,7 +80,9 @@ def runcurl(websites, outmaps):
             #outmaps[website] = outmap
         except Exception as e:
             print ("Error")
-
+            outmaps[website] = {
+                "support3": 0 
+            }
         with open("result.json", 'w') as fp:
             fp.write(json.dumps(outmaps))
 '''   
@@ -87,6 +94,24 @@ def analysis():
     with open("1m.json", 'r') as fd:
         ranking = json.loads(fd.read())
 
+
+    ## Graph 1
+    tls3 = []
+    tls2 = []
+    for website in websites:
+        rank = ranking[website]
+        if result.get(website) is None:
+            tls2.append(rank)
+        else:
+            if result[website]["support3"] == 1:
+                tls3.append(rank)
+            else:
+                tls2.append(rank)
+    import pdb; pdb.set_trace()
+
+    plt.scatter(tls2, len(tls2)*[2], s=5, c = 'r')
+    plt.scatter(tls3, len(tls3)*[3], s=10, c = 'b')
+    plt.show()
 
 def main():
     print("Tool Started!!!")
@@ -106,4 +131,5 @@ def main():
 
 if __name__ == "__main__":
     # execute only if run as a script
-    main()
+    # main()
+    analysis()
